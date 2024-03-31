@@ -1,11 +1,33 @@
 import React from 'react';
+import { GlobalStyles, createTheme } from '@mui/material';
+import Layout from './Component/Layout';
+import { ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme();
 
 const App = () => {
   return (
-    <div>
-      <h1>React 18</h1>
-      <p>React 18 is the latest version of React.</p>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles
+        styles={{
+          html: {
+            fontFamily: 'sans-serif',
+            fontSize: '15 px',
+            height: '100%',
+          },
+          body: {
+            margin: 0,
+            height: '100%',
+            backgroundColor: '#0a1f44',
+            color: '#ffffff',
+          },
+          '#app': {
+            height: '100%',
+          },
+        }}
+      />
+      <Layout />
+    </ThemeProvider>
   );
 }
 
