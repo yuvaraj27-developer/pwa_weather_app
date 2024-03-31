@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const DotEnvPlugin = require('dotenv-webpack');
+const { InjectManifest } = require( 'workbox-webpack-plugin' );
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = (env) => {
   return {
@@ -18,7 +20,7 @@ module.exports = (env) => {
           use: 'babel-loader'
         },
         {
-          test: /\.(png|ico)?$/,
+          test: /\.(png|ico|jpg)?$/,
           use: ['file-loader?name=[name].[ext]']
         }
       ]
@@ -34,6 +36,17 @@ module.exports = (env) => {
       }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV || 'development'),
+      }),
+      new InjectManifest({
+        swSrc: './src/service-worker.js',
+        swDest: 'sw.js'
+      }),
+      new CopyPlugin({
+        patterns: [
+          { from: 'public/manifest.json', to: 'manifest.json' },
+          { from: 'public/favicon.png', to: 'favicon.png' },
+          { from: 'public/background_weather_app.jpg', to: 'background_weather_app.jpg' },
+        ],
       }),
     ]
   }

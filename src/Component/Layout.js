@@ -74,7 +74,7 @@ const WeatherIcon = styled('img')(() => ({
 const WeatherDescription = styled('p')(() => ({
   marginTop: '10px',
   textTransform: 'uppercase',
-  letterSpacing: '0.05em',
+  letterSpacing: '1px',
 }));
 
 const Layout = () => {
