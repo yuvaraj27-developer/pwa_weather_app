@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { GlobalStyles, createTheme } from '@mui/material';
-import Layout from './Component/Layout';
 import { ThemeProvider } from '@mui/material/styles';
+const Layout = lazy(() => import('./Component/Layout'));
 
 const theme = createTheme();
 
