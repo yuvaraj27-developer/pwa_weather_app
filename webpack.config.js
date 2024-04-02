@@ -40,6 +40,7 @@ module.exports = (env) => {
         patterns: [
           { from: 'public/favicon.png', to: 'favicon.png' },
           { from: 'public/background_weather_app.jpg', to: 'background_weather_app.jpg' },
+          { from: 'public/manifest.json', to: 'manifest.json' },
         ],
       }),
     ]
