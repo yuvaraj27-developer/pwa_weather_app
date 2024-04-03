@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const DotEnvPlugin = require('dotenv-webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
 
 module.exports = (env) => {
   return {
@@ -40,8 +41,13 @@ module.exports = (env) => {
         patterns: [
           { from: 'public/favicon.png', to: 'favicon.png' },
           { from: 'public/background_weather_app.jpg', to: 'background_weather_app.jpg' },
+          { from: 'public/manifest.json', to: 'manifest.json' }
         ],
       }),
+      new InjectManifest({
+        swSrc: './src/service-worker.js',
+        swDest: 'sw.js'
+      })
     ]
   }
 }

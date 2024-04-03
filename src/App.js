@@ -12,7 +12,7 @@ const App = () => {
         styles={{
           html: {
             fontFamily: 'sans-serif',
-            fontSize: '15 px',
+            fontSize: '10px',
             height: '100%',
           },
           body: {
